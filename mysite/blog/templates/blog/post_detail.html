@@ -7,16 +7,16 @@
 
         <div class="date postdate">{{post.published_date}}</div>
     {% else %}
-        <a class="btn btn-default" href="{% url 'post_public' pk = post.pk %}">Publish Date</a>
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish Date</a>
     {% endif%}
-            <p class="postcontent">{{post.text|Safe|linebreaksbr}}</p>
+            <p class="postcontent">{{post.text|safe|linebreaksbr}}</p>
 
     {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'post_edit' pk= post.pk %}">
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
             <span class="glyphicon glyphicon-pencil"></span>
         </a>
 
-        <a class="btn btn-primary" href="{% url 'post_remove' pk= post.pk %}">
+        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
 
@@ -24,17 +24,17 @@
     {% endif %}
 
 <hr>
-    <a href="{% url 'add_comment_to_post% pk=post.pk}" class="btn btn-primary btn-comment">Add Comment</a>
+    <a href="{% url 'add_comment_to_post' pk=post.pk %}" class="btn btn-primary btn-comment">Add Comment</a>
     <div class="container">
         {% for comment in post.comment.all %}
         <br>
             {% if user_is_authenticated or comment.approved_comment %}
                 {{comment.created_date}}
                 {% if not comment.approved_comment %}
-                    <a class="btn btn-default" href="{% url 'comment_remove' pk= comment.pk %}">
+                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <a class="btn btn-primary" href="{% url 'comment_approve' pk= comment.pk %}">
+        <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
                 {% endif %}

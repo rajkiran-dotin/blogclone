@@ -43,7 +43,7 @@ class DraftListView(LoginRequiredMixin,ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(publish_date__lte = timezone.now()).order_by('-published_date')
+        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
 
 
 ############
